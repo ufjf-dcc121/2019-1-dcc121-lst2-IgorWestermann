@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 3 - Lista 2</title>
+</head>
+
+<body>
+
+    <form name="lista">
+        <label>Nome: <input type="text" name="nome" id="nome"></label>
+        <label>Idade: <input type="number" name="idade" id="idade"></label>
+        <input type="submit">
+    </form>
+    <button onclick="editaNome()" type="submit" id="Editar" style="display: none">Editar</button>
+    <button onclick="apagaNome()" type="button" id="Apagar" style="display: none">Apagar</button>
+
+    <h2>Adulto</h2>
+    <ul id="adultoList">
+
+    </ul>
+    <h2>Estudante</h2>
+    <ul id="estudanteList">
+
+    </ul>
+
+    <script>
+        var adultos = [];
+        var estudantes = [];
+        var listaAdultos = document.getElementsByTagName('ul')[0];
+        var listaEstudantes = document.getElementsByTagName('ul')[1];
+        var apagar = document.getElementById('Apagar');
+        var editar = document.getElementById('Editar');
+        var id = 0;
+
+        document.forms.lista.addEventListener("submit", function enviar(e) {
+            e.preventDefault();
+            var nome = document.forms.lista.nome.value;
+            var idade = Number(document.forms.lista.idade.value);
+            var novoNome = { "id": id, "nome": nome, "idade": idade };
+            var novoLi = document.createElement('li');
+            novoLi.setAttribute("id", id);
+
+            novoLi.textContent = novoNome.nome + " - " + idade;
+
+            if (idade >= 18) {
+                adultos.push(novoNome);
+                listaAdultos.appendChild(novoLi);
+            } else {
+                estudantes.push(novoNome);
+                listaEstudantes.appendChild(novoLi);
+            }
+
+            id++;
+
+            document.forms.lista.reset();
+
+            novoLi.onclick = aparecebotao;
+
+
+
+        });
+
+        function editaNome() {
+            var editName = document.forms.lista.nome.value;
+            var editIdade = document.forms.lista.idade.value;
+
+            editName.textContent = document.forms.lista.nome.value;
+            editIdade.textContent = Number(document.forms.lista.idade.value);
+
+            if (idade >= 18) {
+                adultos.push({ "id": id, "nome": editName, "idade": editIdade });
+
+            } else {
+                estudantes.push({ "id": id, "nome": editName, "idade": editIdade });
+
+            }
+
+        }
+
+        function apagaNome() {
+            var id2 = id - 1;
+            var adultoList = document.getElementById('adultoList');
+            adultos.splice(adultos.id2, 1);
+            // adultoList.removeChild(adultoList.id2);
+            console.log(id2);
+
+            var somebtn = document.getElementById("Apagar");
+            somebtn.style.display = "none";
+
+
+        }
+
+        function aparecebotao() {
+            var teste = document.getElementById("Apagar");
+            var teste2 = document.getElementById("Editar");
+            teste.style.display = "initial";
+            teste2.style.display = "initial";
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

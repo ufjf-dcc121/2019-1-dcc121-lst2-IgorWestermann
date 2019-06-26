@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Questão 1 - Lista 2</title>
 </head>
+
 <body>
     Produto: <input type="text" id="item" name="item">
     Quantidade: <input type="number" id="quantidade" name="quantidade">
@@ -16,7 +18,7 @@
     </ul>
 
     <script>
-        var lista =  document.querySelector('ul');
+        var lista = document.querySelector('ul');
         var quantidade = document.querySelector('#quantidade');
         var produto = document.querySelector('#item');
         var adicionar = document.querySelector('#adicionar');
@@ -24,7 +26,7 @@
 
         adicionar.addEventListener('click', function addLista() {
             var item = '<li>' + produto.value + "    " + quantidade.value + '</li>';
-            
+
             lista.innerHTML += item;
             quantidade.value = '';
             produto.value = '';
@@ -36,4 +38,7 @@
         });
     </script>
 </body>
+
 </html>
+
+

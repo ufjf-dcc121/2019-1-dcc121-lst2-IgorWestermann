@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Questão 2 - Lista 2</title>
+</head>
+
+<body>
+    <form name="pilha">
+        <label>Entrada: <input type="text" id="item"></label>
+        <button type="submit" id="empilha">Empilhar</button>
+    </form>
+    <button onclick="desempilhar()" type="button" id="desempilha">Desempilhar</button>
+
+    <ul id="list">
+
+    </ul>
+
+    <script>
+        var lista = [];
+        var pilha = document.getElementsByTagName('ul')[0];
+        var item = document.querySelector('#item');
+        var empilha = document.querySelector('#empilha');
+        var desempilha = document.getElementById('desempilha');
+
+        document.forms.pilha.addEventListener("submit", function empilhar(e) {
+            e.preventDefault();
+            var itemPilha = document.forms.pilha.item.value;
+            var novoItem = { "item": itemPilha };
+            var novoLi = document.createElement('li');
+
+            lista.push(novoItem);
+            novoLi.textContent = novoItem.item;
+            pilha.appendChild(novoLi);
+
+            document.forms.pilha.reset();
+
+        });
+
+        function desempilhar() {
+            var list = document.getElementById('list');
+            lista.splice(lista.length - 1,1);
+            list.removeChild(list.lastChild);  
+        }
+        
+    </script>   
+</body>
+
+</html>
