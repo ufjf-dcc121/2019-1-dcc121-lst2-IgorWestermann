@@ -26,6 +26,7 @@
         <tbody id="tabela"></tbody>
     </table>
 
+    <p><span id="acimaPeso"></span></p>
     <p><span id="alM"></span></p>
     <p><span id="peM"></span></p>
     <p><span id="veM"></span></p>
@@ -53,6 +54,7 @@
         var somaIdade = 0;
 
         var i = 0;
+        var k = 0;
  
         function processar(table) {
             var animal = document.getElementsByName('animal')[0].value;
@@ -87,6 +89,13 @@
             document.getElementById('peM').innerHTML = 'A média de peso é: ' + mediaPeso;
             document.getElementById('veM').innerHTML = 'A média de velocidade é: ' + mediaVel;
             document.getElementById('idM').innerHTML = 'A média de idade é: ' + mediaIdade;
+
+            if (peso > mediaPeso){
+                k++;
+                document.getElementById('acimaPeso').textContent = k  + " estão acima da média de peso!";
+                
+            }
+
 
             if (altura > height) {
                 height = altura;
