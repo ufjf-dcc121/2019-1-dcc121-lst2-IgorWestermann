@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista 2.2 - Javascript e Listas</title>
+</head>
+
+<body>
+    <form name="form" onsubmit="return processar('tabela')">
+        Animal: <input type="text" name="animal">
+        Altura: <input type="number" name="altura">
+        Peso: <input type="number" name="peso">
+        Velocidade: <input type="number" name="vel">
+        Idade Máx: <input type="number" name="idade">
+        <input type="submit" value="Enviar">
+    </form>
+    <table border='1'>
+        <tr>
+            <th>Animal</th>
+            <th>Altura</th>
+            <th>Peso</th>
+            <th>Velocidade</th>
+            <th>Idade Máxima</th>
+        </tr>
+        <tbody id="tabela"></tbody>
+    </table>
+
+    <p><span id="alM"></span></p>
+    <p><span id="peM"></span></p>
+    <p><span id="veM"></span></p>
+    <p><span id="idM"> </span></p>
+    <p><span id="al"></span></p>
+    <p><span id="pe"></span></p>
+    <p><span id="ve"></span></p>
+    <p><span id="id"></span></p>
+
+    <script>
+
+        var height = 0;
+        var weight = 0;
+        var speed = 0;
+        var age = 0;
+
+        var mediaAltura = 0;
+        var mediaPeso = 0;
+        var mediaVel = 0;
+        var mediaIdade = 0;
+
+        var somaAltura = 0;
+        var somaPeso = 0;
+        var somaVel = 0;
+        var somaIdade = 0;
+
+        var i = 0;
+ 
+        function processar(table) {
+            var animal = document.getElementsByName('animal')[0].value;
+            var altura = Number(document.getElementsByName('altura')[0].value);
+            var peso = Number(document.getElementsByName('peso')[0].value);
+            var vel = Number(document.getElementsByName('vel')[0].value);
+            var idade = Number(document.getElementsByName('idade')[0].value);
+
+            var nLinha = document.createElement('tr');
+
+            nLinha.insertCell(0).innerHTML = document.forms.form.animal.value;
+            nLinha.insertCell(1).innerHTML = document.forms.form.altura.value;
+            nLinha.insertCell(2).innerHTML = document.forms.form.peso.value;
+            nLinha.insertCell(3).innerHTML = document.forms.form.vel.value;
+            nLinha.insertCell(4).innerHTML = document.forms.form.idade.value;
+
+            document.getElementById(table).appendChild(nLinha);
+
+            i++;
+
+            somaAltura += altura;
+            somaPeso += peso;
+            somaVel += vel;
+            somaIdade += idade;
+
+            mediaAltura = somaAltura / i;
+            mediaPeso = somaPeso / i;
+            mediaVel = somaVel / i;
+            mediaIdade = somaIdade / i;
+
+            document.getElementById('alM').innerHTML = 'A média de altura é: ' + mediaAltura;
+            document.getElementById('peM').innerHTML = 'A média de peso é: ' + mediaPeso;
+            document.getElementById('veM').innerHTML = 'A média de velocidade é: ' + mediaVel;
+            document.getElementById('idM').innerHTML = 'A média de idade é: ' + mediaIdade;
+
+            if (altura > height) {
+                height = altura;
+
+                document.getElementById('al').textContent = animal + " é o animal mais alto!";
+            }
+            if (peso > weight) {
+                weight = peso;
+
+                document.getElementById('pe').textContent = animal + " é o animal mais pesado!";
+            }
+            if (vel > speed) {
+                speed = vel;
+
+                document.getElementById('ve').textContent = animal + " é o animal mais rápido!";
+            }
+            if (idade > age) {
+                age = idade;
+
+                document.getElementById('id').textContent = animal + " é o animal mais velho!";
+            }
+
+            document.forms.form.reset();
+
+            return false;
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
